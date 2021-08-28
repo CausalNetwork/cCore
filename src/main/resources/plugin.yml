@@ -58,3 +58,5 @@ commands:
     aliases: [blacklist]
   cosmetics:
     aliases: [cos]
+  ver:
+    aliases: [version, icanhasbukkit, about]

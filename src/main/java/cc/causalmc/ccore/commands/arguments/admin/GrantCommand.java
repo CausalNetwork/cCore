@@ -245,10 +245,10 @@ public class GrantCommand extends Command implements Listener {
 				e.setCancelled(true);
 				player.closeInventory();
 
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cNon")) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cNo")) {
 					CCore.getInstance().grantMap.remove(player);
 					return;
-				} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aOui")) {
+				} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aYes")) {
 					String target = CCore.getInstance().grantMap.get(player.getName());
 
 					ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
