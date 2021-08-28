@@ -52,6 +52,7 @@ public class CommandManager implements CommandExecutor {
 		addCommand(new MoreCommand(plugin));
 		addCommand(new CosmeticsCommand(plugin));
 		addCommand(new VerCommand(plugin));
+		//addCommand(new WhitelistCommand(plugin));
 		//addCommand(new PermaCommand(plugin));
 		/*addCommand(new NicklistCommand(plugin));
 		addCommand(new UnnickCommand(plugin));

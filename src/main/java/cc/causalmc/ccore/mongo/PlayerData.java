@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class PlayerData {
 
@@ -19,23 +20,23 @@ public class PlayerData {
     }
 
     public void addCoins(int amount){
-        CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
-                new BasicDBObject("$inc", new BasicDBObject("coins", amount)));
+        CompletableFuture.runAsync(() -> CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
+                new BasicDBObject("$inc", new BasicDBObject("coins", amount))));
     }
     public void removeCoins(int amount){
-        CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
-                new BasicDBObject("$inc", new BasicDBObject("coins", -amount)));
+        CompletableFuture.runAsync(() -> CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
+                new BasicDBObject("$inc", new BasicDBObject("coins", -amount))));
     }
     public int getCoins(){
         return (int) DatabaseManager.getFromCollection(uuid, "coins");
     }
     public void addCredits(int amount){
-        CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
-                new BasicDBObject("$inc", new BasicDBObject("credits", amount)));
+        CompletableFuture.runAsync(() -> CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
+                new BasicDBObject("$inc", new BasicDBObject("credits", amount))));
     }
     public void removeCredits(float amount){
-        CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
-                new BasicDBObject("$inc", new BasicDBObject("credits", -amount)));
+        CompletableFuture.runAsync(() -> CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
+                new BasicDBObject("$inc", new BasicDBObject("credits", -amount))));
     }
     public int getCredits(){
        return (int) DatabaseManager.getFromCollection(uuid, "credits");
@@ -48,12 +49,12 @@ public class PlayerData {
         }
     }
     public void setTag(String name) {
-        CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
-                new BasicDBObject("$set", new BasicDBObject("tag", name)));
+        CompletableFuture.runAsync(() -> CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
+                new BasicDBObject("$set", new BasicDBObject("tag", name))));
     }
     public void resetTag() {
-        CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
-                new BasicDBObject("$set", new BasicDBObject("tag", "")));
+        CompletableFuture.runAsync(() -> CCore.getInstance().getMongo().getCollection().update(new BasicDBObject("_id", uuid.toString()),
+                new BasicDBObject("$set", new BasicDBObject("tag", ""))));
     }
     /*
     public long getParcoursTime(String parcoursID){

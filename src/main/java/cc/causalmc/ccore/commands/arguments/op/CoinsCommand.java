@@ -1,5 +1,6 @@
 package cc.causalmc.ccore.commands.arguments.op;
 
+import cc.causalmc.ccore.CCore;
 import cc.causalmc.ccore.commands.manager.Command;
 import cc.causalmc.ccore.commands.manager.CommandManager.Requirement;
 import cc.causalmc.ccore.mongo.CausalPlayer;
@@ -43,11 +44,12 @@ public class CoinsCommand extends Command implements TabCompleter {
 					switch (args[0]) {
 						case "add":
 							targetInfo.addCoins(amount);
-							p.sendMessage(CC.translate("&dYou &5added &5" + amount +  "&dcoins to this player, bringing his total to &5" + targetInfo.getCoins() + "&dcoins."));
+							Bukkit.getScheduler().runTaskLaterAsynchronously(CCore.getInstance(), () -> p.sendMessage(CC.translate("&dYou &5added &5" + amount +  "&dcoins to this player, bringing his total to &5" + targetInfo.getCoins() + "&dcoins.")), 10L);
+
 							break;
 						case "remove":
 							targetInfo.removeCoins(amount);
-							p.sendMessage(CC.translate("&dYou &5removed &5" + amount +  "&dcoins to this player, bringing his total to &5" + targetInfo.getCoins() + "&dcoins."));
+									Bukkit.getScheduler().runTaskLaterAsynchronously(CCore.getInstance(), () -> p.sendMessage(CC.translate("&dYou &5removed &5" + amount +  "&dcoins to this player, bringing his total to &5" + targetInfo.getCoins() + "&dcoins.")), 10L);
 							break;
 						default:
 							p.sendMessage(CC.translate("&c/coins <add/remove> <player> <amount>"));

@@ -1,5 +1,5 @@
 name: CCore
-version: '${project.version}'
+version: ${project.version}
 main: cc.causalmc.ccore.CCore
 depend:
   - LuckPerms
