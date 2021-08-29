@@ -1,8 +1,7 @@
 package cc.causalmc.ccore;
 
-import cc.causalmc.ccore.mongo.CausalPlayer;
+import cc.causalmc.ccore.backend.CausalPlayer;
 import cc.causalmc.ccore.menus.BasicBuyInventory;
-import cc.causalmc.ccore.mongo.PlayerData;
 import cc.causalmc.ccore.tags.Tags;
 import cc.causalmc.ccore.utils.CC;
 import cc.causalmc.ccore.utils.StringUtils;
@@ -14,7 +13,6 @@ import net.luckperms.api.model.user.User;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
 import java.util.UUID;
 
 public class CoreAPI {

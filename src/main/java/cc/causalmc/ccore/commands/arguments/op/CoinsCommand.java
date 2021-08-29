@@ -3,7 +3,7 @@ package cc.causalmc.ccore.commands.arguments.op;
 import cc.causalmc.ccore.CCore;
 import cc.causalmc.ccore.commands.manager.Command;
 import cc.causalmc.ccore.commands.manager.CommandManager.Requirement;
-import cc.causalmc.ccore.mongo.CausalPlayer;
+import cc.causalmc.ccore.backend.CausalPlayer;
 import cc.causalmc.ccore.utils.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -40,7 +40,7 @@ public class CoinsCommand extends Command implements TabCompleter {
 				CausalPlayer targetInfo = new CausalPlayer(target);
 
 				if(args.length == 3) {
-					int amount = Integer.parseInt(args[2]);
+					double amount = Double.parseDouble(args[2]);
 					switch (args[0]) {
 						case "add":
 							targetInfo.addCoins(amount);

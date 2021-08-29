@@ -5,7 +5,7 @@ import cc.causalmc.ccore.commands.arguments.player.*;
 import cc.causalmc.ccore.commands.arguments.admin.*;
 import cc.causalmc.ccore.commands.manager.CommandManager;
 import cc.causalmc.ccore.listeners.*;
-import cc.causalmc.ccore.mongo.MongoUtils;
+import cc.causalmc.ccore.backend.Backend;
 import cc.causalmc.ccore.tags.Tags;
 import cc.causalmc.ccore.utils.ConfigFile;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class CCore extends JavaPlugin {
 
 
     @Getter
-    public MongoUtils mongo;
+    public Backend backend;
     @Getter
     public static CCore Instance;
     private ConfigFile config;
@@ -40,7 +40,7 @@ public class CCore extends JavaPlugin {
         new CommandManager(this);
         getLogger().info("Connecting to the database");
         try {
-            mongo = new MongoUtils();
+            backend = new Backend();
         } catch (Exception e) {
             getLogger().severe("Cannot connect to MongoDB... Disabling plugin");
             getPluginLoader().disablePlugin(this);

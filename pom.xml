@@ -51,14 +51,20 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>2.12.3</version>
+            <version>3.12.10</version>
             <scope>compile</scope>
         </dependency>
         <!--Jedis API-->
-        <dependency>
+        <!-- <dependency>
             <groupId>com.github.therealdamt</groupId>
             <artifactId>JedisAPI</artifactId>
             <version>-c92eadffde-1</version>
+        </dependency> -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.5.2</version>
+            <scope>compile</scope>
         </dependency>
         <!--LuckPerms API-->
         <dependency>

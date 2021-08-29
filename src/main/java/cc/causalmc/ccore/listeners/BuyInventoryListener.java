@@ -1,7 +1,7 @@
 package cc.causalmc.ccore.listeners;
 
 import cc.causalmc.ccore.CCore;
-import cc.causalmc.ccore.mongo.CausalPlayer;
+import cc.causalmc.ccore.backend.CausalPlayer;
 import cc.causalmc.ccore.utils.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

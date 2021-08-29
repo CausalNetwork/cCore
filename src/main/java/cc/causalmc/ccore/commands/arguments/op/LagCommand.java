@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.management.ManagementFactory;
+import java.util.concurrent.CompletableFuture;
 
 public class LagCommand extends Command {
 
@@ -38,23 +39,26 @@ public class LagCommand extends Command {
 		String uptime = DurationFormatUtils.formatDurationWords(System.currentTimeMillis() - serverTime, true, true);
 
 		String tps = sb.substring( 0, sb.length() - 2 );
+		CompletableFuture.runAsync(() -> {
+			sender.sendMessage(CC.CHAT_BAR);
+			sender.sendMessage(CC.translate("&5&lServer Info&7:"));
+			sender.sendMessage(CC.translate(" &7* &dTPS&7: &5" + tps));
+			sender.sendMessage(CC.translate(" &7* &dUptime&7: &5" + uptime));
+			sender.sendMessage(CC.translate(" &7* &dMax Memory&7: &5" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + " &dMB"));
+			sender.sendMessage(CC.translate(" &7* &dAllocated Memory&7: &5" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + " &dMB"));
+			sender.sendMessage(CC.translate(" &7* &dFree Memory&7: &5" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + " &dMB"));
+			sender.sendMessage("");
+			sender.sendMessage(CC.translate("&5&lWorlds&7:"));
 
-		sender.sendMessage(CC.CHAT_BAR);
-		sender.sendMessage(CC.translate("&5&lServer Info&7:"));
-		sender.sendMessage(CC.translate(" &7* &dTPS&7: &5" + tps));
-		sender.sendMessage(CC.translate(" &7* &dUptime&7: &5" + uptime));
-		sender.sendMessage(CC.translate(" &7* &dMax Memory&7: &5" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + " &dMB"));
-		sender.sendMessage(CC.translate(" &7* &dAllocated Memory&7: &5" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + " &dMB"));
-		sender.sendMessage(CC.translate(" &7* &dFree Memory&7: &5" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + " &dMB"));
-		sender.sendMessage("");
-		sender.sendMessage(CC.translate("&5&lWorlds&7:"));
+			for(World world : Bukkit.getWorlds()) {
+				sender.sendMessage(CC.translate(" &7* &5" + world.getName() + "&7: &dChunks Loaded&7: &5" + world.getLoadedChunks().length + "&7, &dEntities&7: &5" + world.getEntities().size()));
+			}
 
-		for(World world : Bukkit.getWorlds()) {
-			sender.sendMessage(CC.translate(" &7* &5" + world.getName() + "&7: &dChunks Loaded&7: &5" + world.getLoadedChunks().length + "&7, &dEntities&7: &5" + world.getEntities().size()));
-		}
+			sender.sendMessage(CC.CHAT_BAR);
 
-		sender.sendMessage(CC.CHAT_BAR);
+		});
 		return true;
+
 	}
 	private String format(double tps)
 	{

@@ -1,8 +1,7 @@
 package cc.causalmc.ccore.listeners;
 
-import cc.causalmc.ccore.CCore;
-import cc.causalmc.ccore.mongo.CausalPlayer;
-import cc.causalmc.ccore.mongo.DatabaseManager;
+import cc.causalmc.ccore.backend.CausalPlayer;
+import cc.causalmc.ccore.backend.DatabaseManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -22,11 +21,11 @@ public class DatabaseJoinLeaveListener implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        CausalPlayer.getSytaPlayer().remove(e.getPlayer());
+        CausalPlayer.getCausalPlayerMap().remove(e.getPlayer());
     }
 
     @EventHandler
     public void onKick(PlayerKickEvent e){
-        CausalPlayer.getSytaPlayer().remove(e.getPlayer());
+        CausalPlayer.getCausalPlayerMap().remove(e.getPlayer());
     }
 }

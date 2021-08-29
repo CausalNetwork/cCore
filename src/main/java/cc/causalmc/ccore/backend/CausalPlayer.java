@@ -1,4 +1,4 @@
-package cc.causalmc.ccore.mongo;
+package cc.causalmc.ccore.backend;
 
 import org.bukkit.entity.Player;
 
@@ -7,18 +7,18 @@ import java.util.Map;
 
 public class CausalPlayer {
 
-    private static Map<Player, CausalPlayer> sytaPlayer = new HashMap<>();
+    private static Map<Player, CausalPlayer> causalPlayerMap = new HashMap<>();
     private Player player;
     private PlayerData playerData;
 
     public CausalPlayer(Player player) {
         this.player = player;
         this.playerData = new PlayerData(player.getUniqueId());
-        sytaPlayer.put(player, this);
+        causalPlayerMap.put(player, this);
     }
 
     public static CausalPlayer getPlayerInfos(Player player){
-        return sytaPlayer.get(player);
+        return causalPlayerMap.get(player);
     }
 
     public Player getPlayer() {
@@ -30,10 +30,10 @@ public class CausalPlayer {
     }
 
 
-    public int getCoins() {
+    public double getCoins() {
         return playerData.getCoins();
     }
-    public int getCredits() {
+    public double getCredits() {
         return playerData.getCredits();
     }
     public String getTag() {
@@ -45,24 +45,24 @@ public class CausalPlayer {
     public void setTag(String name) {
         playerData.setTag(name);
     }
-    public void addCoins(int amount){
+    public void addCoins(double amount){
         playerData.addCoins(amount);
     }
-    public void addCredits(int amount){
+    public void addCredits(double amount){
         playerData.addCredits(amount);
     }
-    public void removeCoins(int amount){
+    public void removeCoins(double amount){
         playerData.removeCoins(amount);
     }
-    public void removeCredits(int amount){
+    public void removeCredits(double amount){
         playerData.removeCredits(amount);
     }
 
     public void playerDisconnect(Player player){
-        sytaPlayer.remove(player);
+        causalPlayerMap.remove(player);
     }
 
-    public static Map<Player, CausalPlayer> getSytaPlayer() {
-        return sytaPlayer;
+    public static Map<Player, CausalPlayer> getCausalPlayerMap() {
+        return causalPlayerMap;
     }
 }

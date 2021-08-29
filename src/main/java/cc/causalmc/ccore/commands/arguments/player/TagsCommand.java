@@ -4,7 +4,7 @@ import cc.causalmc.ccore.commands.manager.Command;
 import cc.causalmc.ccore.commands.manager.CommandManager.Requirement;
 import cc.causalmc.ccore.menus.BasicBuyInventory;
 import cc.causalmc.ccore.menus.TagMenu;
-import cc.causalmc.ccore.mongo.CausalPlayer;
+import cc.causalmc.ccore.backend.CausalPlayer;
 import cc.causalmc.ccore.tags.Tags;
 import cc.causalmc.ccore.utils.CC;
 import org.bukkit.command.CommandSender;
