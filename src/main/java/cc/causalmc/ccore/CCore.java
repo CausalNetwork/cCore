@@ -19,7 +19,7 @@ public class CCore extends JavaPlugin {
     @Getter
     public Backend backend;
     @Getter
-    public static CCore Instance;
+    private static CCore Instance;
     private ConfigFile config;
     public HashMap<String, String> grantMap= new HashMap<>();
     public List<UUID> invPlayers = new ArrayList<>();

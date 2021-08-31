@@ -35,7 +35,7 @@ public class TagMenu {
         }
         for (Tags tag : Tags.values()) {
             ItemStack tagItem = new ItemBuilder(Material.NAME_TAG)
-                    .name(tag.getName())
+                    .name(CC.translate("&5" + tag.getName()))
                     .lore(
                             CC.MENU_BAR,
                             CC.translate("&6Tag: " + tag.getPrefix()),

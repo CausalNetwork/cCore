@@ -5,6 +5,7 @@ import cc.causalmc.ccore.menus.BasicBuyInventory;
 import cc.causalmc.ccore.tags.Tags;
 import cc.causalmc.ccore.utils.CC;
 import cc.causalmc.ccore.utils.StringUtils;
+import io.github.zowpy.jedisapi.JedisAPI;
 import lombok.Getter;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -29,6 +30,9 @@ public class CoreAPI {
 
     public CausalPlayer getCausalPlayer(Player player) {
         return new CausalPlayer(player);
+    }
+    public JedisAPI getJedis() {
+        return CCore.getInstance().getApi().getJedis();
     }
 
     public void buy(UUID uuid, int coins, int credits, String permission){

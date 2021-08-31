@@ -45,7 +45,7 @@ public class TagsCommand extends Command implements Listener {
 			Player player = (Player) e.getWhoClicked();
 			e.setCancelled(true);
 			if(e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && !Objects.equals(e.getCurrentItem().getItemMeta().getDisplayName(), " ")){
-				String name = e.getCurrentItem().getItemMeta().getDisplayName();
+				String name = e.getCurrentItem().getItemMeta().getDisplayName().substring(2);
 				if(name.equalsIgnoreCase(CC.translate("&cReset"))){
 					player.closeInventory();
 					CausalPlayer.getPlayerInfos(player).resetTag();

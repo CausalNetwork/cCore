@@ -25,17 +25,18 @@ public class DatabaseManager {
                             .append("credits", 0)
                             .append("tag", null);
                     CCore.getInstance().getBackend().getCollection().insertOne(profile);
+                    CCore.getInstance().getBackend().getJedis().getJedisHandler().runCommand(jedis -> jedis.hset("profile", uuid.toString(), gson.toJson(profile)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            } else {
+                CCore.getInstance().getBackend().getJedis().getJedisHandler().runCommand(jedis -> {
+                    Document profile = (Document) CCore.getInstance().getBackend().getCollection().find(new Document("uuid", uuid.toString())).first();
+                    jedis.hset("profile", uuid.toString(), gson.toJson(profile));
+                });
             }
         });
-        CompletableFuture.runAsync(() -> {
-            CCore.getInstance().getBackend().getJedis().getJedisHandler().runCommand(jedis -> {
-                Document profile = (Document) CCore.getInstance().getBackend().getCollection().find(new Document("uuid", uuid.toString())).first();
-                jedis.hset("profile", uuid.toString(), gson.toJson(profile));
-            });  
-        });
+
     }
     /*public static CompletableFuture<Object> getFromCollection(UUID uuid, String string){
          return CompletableFuture.supplyAsync(() -> {
